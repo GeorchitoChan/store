@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CouterComponent } from "../../../shared/components/couter/couter.component";
-
+import { CouterComponent } from "./../../../shared/components/couter/couter.component";
+import { WaveAudioComponent } from "./../../../info/components/wave-audio/wave-audio.component";
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, CouterComponent],
+  imports: [CommonModule, CouterComponent, WaveAudioComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
