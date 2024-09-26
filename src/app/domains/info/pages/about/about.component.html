@@ -5,5 +5,5 @@
     <input type="text" [value]="message()" (change)="changeMessage($event)">
 </p>
 <p>
-    <app-couter [duration]="duration()" [message]="message()" />
+    <app-couter [duration]="duration()" [message]="message()" *ngIf="duration() > 0" />
 </p>

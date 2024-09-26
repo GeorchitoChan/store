@@ -1,9 +1,10 @@
 import { Component, Input, SimpleChange, SimpleChanges } from '@angular/core';
+import { ProductComponent } from "../../../products/components/product/product.component";
 
 @Component({
   selector: 'app-couter',
   standalone: true,
-  imports: [],
+  imports: [ProductComponent],
   templateUrl: './couter.component.html',
   styleUrl: './couter.component.css'
 })
@@ -23,5 +24,27 @@ export class CouterComponent {
     console.log('ngOnChanges');
     console.log('-'.repeat(10));
     console.log(changes);
+  }
+
+  ngOnInit() {
+    // Se ejecuta después de renderizar y sólo sucede una vez
+    // Se puede utilizar para ejecutar promesas u operaciones asincronas
+    console.log('ngOnInit');
+    console.log('-'.repeat(10));
+    console.log('duration => ', this.duration);
+    console.log('message => ', this.message);
+  }
+
+  ngAfterViewInit() {
+    // Se ejecuta después de renderizar
+    // Me indica cuando los hijos del componente ya han sido renderizados
+    console.log('ngAfterViewInit');
+    console.log('-'.repeat(10));
+  }
+
+  ngOnDestroy() {
+    // Nos indica cuándo un componente se destruye
+    console.log('ngOnDestroy');
+    console.log('-'.repeat(10));
   }
 }
