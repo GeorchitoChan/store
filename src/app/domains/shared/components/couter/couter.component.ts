@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, Input, signal, SimpleChange, SimpleChanges } from '@angular/core';
 import { ProductComponent } from "../../../products/components/product/product.component";
 
 @Component({
@@ -11,6 +11,8 @@ import { ProductComponent } from "../../../products/components/product/product.c
 export class CouterComponent {
   @Input({required: true}) duration: number = 0;
   @Input({required: true}) message: string = '';
+  counter = signal(0);
+  couterRef: number | undefined;
 
   constructor() {
     // Permite crear valores de forma directa y no debe ser asicrono.
@@ -37,6 +39,10 @@ export class CouterComponent {
     console.log('-'.repeat(10));
     console.log('duration => ', this.duration);
     console.log('message => ', this.message);
+    this.couterRef = window.setInterval(() => {
+      console.log('Intervalo corriendo');
+      this.counter.update(statePrev => statePrev + 1);
+    }, 1000);
   }
 
   ngAfterViewInit() {
@@ -50,6 +56,7 @@ export class CouterComponent {
     // Nos indica cuándo un componente se destruye
     console.log('ngOnDestroy');
     console.log('-'.repeat(10));
+    window.clearInterval(this.couterRef);
   }
 
   doSomething() {
