@@ -24,6 +24,10 @@ export class CouterComponent {
     console.log('ngOnChanges');
     console.log('-'.repeat(10));
     console.log(changes);
+    const duration = changes['duration'];
+    if (duration && duration.currentValue !== duration.previousValue) {
+      this.doSomething();
+    }
   }
 
   ngOnInit() {
@@ -46,5 +50,9 @@ export class CouterComponent {
     // Nos indica cuándo un componente se destruye
     console.log('ngOnDestroy');
     console.log('-'.repeat(10));
+  }
+
+  doSomething() {
+    console.log('Change duration');
   }
 }
