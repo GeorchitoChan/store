@@ -11,10 +11,11 @@ import { ProductService } from '@shared/services/product.service';
   styleUrl: './product-detail.component.css'
 })
 export class ProductDetailComponent {
-  
+
   @Input() id?: string;
-  private productService = inject(ProductService);
   product = signal<Product | null>(null);
+  cover = signal<string>('');
+  private productService = inject(ProductService);
 
   ngOnInit() {
     if (this.id) {
@@ -22,8 +23,15 @@ export class ProductDetailComponent {
       .subscribe({
         next: (product) => {
           this.product.set(product);
+          if (product.images.length > 0) {
+            this.cover.set(product.images[0]);
+          }
         }
       })
     }
+  }
+
+  changeCover(newImage: string) {
+    this.cover.set(newImage);
   }
 }
